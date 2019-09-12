@@ -35,6 +35,15 @@ To build the dkms deb package:
 ```
 $ ../dkms mkdeb megaraid_sas/07.XXX.XX.XX
 ```
+
+To edit the deb package:
+------------------------------
+```
+$ mkdir tmp
+$ dpkg-deb -R original.deb tmp
+$ # edit DEBIAN/postinst
+$ dpkg-deb -b tmp fixed.deb
+```
 (Needs to use the `dkms` script provided in this repository to fix a bug with the `mkdeb` command, see https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=832558)
 
 Generated deb files are stored in `/var/lib/dkms/megaraid_sas/07.XXX.XX.XX.XX/deb`. Files in the `deb` directory of this repository were copied from there after build.
